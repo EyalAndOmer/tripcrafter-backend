@@ -19,7 +19,7 @@ import sk.tripcrafter.tripcrafter_backend.service.UserDetailsImpl;
 @Component
 public class JwtUtil implements Serializable {
     private static final Logger logger = LoggerFactory.getLogger(JwtUtil.class);
-    public static final long JWT_TOKEN_VALIDITY = 5 * 60 * 60;
+    public static final long JWT_TOKEN_VALIDITY = 3600000;
 
     @Value("${jwt.secret}")
     private String secret;
@@ -27,9 +27,8 @@ public class JwtUtil implements Serializable {
     public String generateJwtToken(Authentication authentication) {
 
         UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
-
         return Jwts.builder()
-                .setSubject((userPrincipal.getUsername()))
+                .setSubject((userPrincipal.getEmail()))
                 .setIssuedAt(new Date())
                 .setExpiration(new Date((new Date()).getTime() + JWT_TOKEN_VALIDITY))
                 .signWith(key(), SignatureAlgorithm.HS256)
