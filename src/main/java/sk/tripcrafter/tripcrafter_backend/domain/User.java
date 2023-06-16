@@ -13,11 +13,12 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String email;
-
     private String password;
 
     private String role;
+
+    // username will be taken as email
+    private String username;
 
     @Column(name = "created_at")
     private Date createdAt;
@@ -28,9 +29,9 @@ public class User {
     public User() {
     }
 
-    public User(Long id, String email, String password, String role) {
-        this.id = id;
-        this.email = email;
+    // TODO doplnit rolu
+    public User(String email, String password, String role) {
+        this.username = email;
         this.password = password;
         this.role = role;
     }
@@ -41,14 +42,6 @@ public class User {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getPassword() {
@@ -83,29 +76,12 @@ public class User {
         this.updatedAt = updatedAt;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        User user = (User) o;
-        return Objects.equals(id, user.id) && Objects.equals(email, user.email) && Objects.equals(password, user.password) && Objects.equals(role, user.role) && Objects.equals(createdAt, user.createdAt) && Objects.equals(updatedAt, user.updatedAt);
+    public String getUsername() {
+        return username;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, email, password, role, createdAt, updatedAt);
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", role='" + role + '\'' +
-                ", createdAt=" + createdAt +
-                ", updatedAt=" + updatedAt +
-                '}';
+    public void setUsername(String username) {
+        this.username = username;
     }
 }
 
