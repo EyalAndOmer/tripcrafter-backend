@@ -11,6 +11,9 @@ public class Trip {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "name")
+    private String name;
+
     @Column(name = "max_cost")
     private Double maxCost;
 
@@ -33,5 +36,11 @@ public class Trip {
     @Column(name = "updated_at")
     private Date updatedAt;
 
-    // Constructors, getters, and setters
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

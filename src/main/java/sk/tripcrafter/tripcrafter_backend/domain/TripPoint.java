@@ -20,6 +20,15 @@ public class TripPoint {
     @JoinColumn(name = "trip_id")
     private Trip trip;
 
+    @Column(name = "name", insertable=false, updatable=false)
+    private String placeName;
+
+    @Column(name = "city")
+    private String cityName;
+
+    @Column(name = "description")
+    private String description;
+
     private Integer day;
 
     private String name;
@@ -116,32 +125,27 @@ public class TripPoint {
         this.updatedAt = updatedAt;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        TripPoint tripPoint = (TripPoint) o;
-        return Objects.equals(id, tripPoint.id) && Objects.equals(user, tripPoint.user) && Objects.equals(trip, tripPoint.trip) && Objects.equals(day, tripPoint.day) && Objects.equals(name, tripPoint.name) && Objects.equals(note, tripPoint.note) && Objects.equals(type, tripPoint.type) && Objects.equals(place_order, tripPoint.place_order) && Objects.equals(createdAt, tripPoint.createdAt) && Objects.equals(updatedAt, tripPoint.updatedAt);
+    public String getPlaceName() {
+        return placeName;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, user, trip, day, name, note, type, place_order, createdAt, updatedAt);
+    public void setPlaceName(String placeName) {
+        this.placeName = placeName;
     }
 
-    @Override
-    public String toString() {
-        return "TripPoint{" +
-                "id=" + id +
-                ", user=" + user +
-                ", trip=" + trip +
-                ", day=" + day +
-                ", name='" + name + '\'' +
-                ", note='" + note + '\'' +
-                ", type='" + type + '\'' +
-                ", order=" + place_order +
-                ", createdAt=" + createdAt +
-                ", updatedAt=" + updatedAt +
-                '}';
+    public String getCityName() {
+        return cityName;
+    }
+
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

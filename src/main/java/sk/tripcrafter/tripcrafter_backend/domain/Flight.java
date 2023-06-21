@@ -30,5 +30,4 @@ public class Flight {
     @Column(name = "updated_at")
     private Date updatedAt;
 
-    // Constructors, getters, and setters
 }
